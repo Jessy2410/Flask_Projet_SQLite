@@ -76,7 +76,7 @@ def search_by_nom():
         else:
             message = "Veuillez entrer un nom."
 
-    return render_template('search_by_nom.html', results=results, message=message)
+    return render_template('searchUser.html', results=results, message=message)
 
 
 @app.route('/consultation/')
