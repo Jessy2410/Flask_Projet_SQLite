@@ -49,6 +49,36 @@ def Readfiche(post_id):
     # Rendre le template HTML et transmettre les données
     return render_template('read_data.html', data=data)
 
+@app.route('/fiche_nom/', methods=['GET', 'POST'])
+def search_by_nom():
+    message = ""
+    results = []
+
+    if request.method == 'POST':
+        nom = request.form.get('nom', '').strip()
+
+        if nom:
+            try:
+                # Connexion à la base SQLite
+                conn = sqlite3.connect('database.db')
+                cursor = conn.cursor()
+
+                # Requête SQL pour rechercher le client par nom
+                cursor.execute("SELECT * FROM clients WHERE nom = ?", (nom,))
+                results = cursor.fetchall()
+
+                if not results:
+                    message = "Aucun client trouvé avec ce nom."
+
+                conn.close()
+            except Exception as e:
+                message = f"Erreur lors de la recherche : {e}"
+        else:
+            message = "Veuillez entrer un nom."
+
+    return render_template('search_by_nom.html', results=results, message=message)
+
+
 @app.route('/consultation/')
 def ReadBDD():
     conn = sqlite3.connect('database.db')
