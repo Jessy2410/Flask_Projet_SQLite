@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche par Nom</title>
+</head>
+<body>
+    <h1>Rechercher un client par son nom</h1>
+
+    <form method="POST" action="/fiche_nom/">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+        <button type="submit">Rechercher</button>
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    {% if results %}
+        <h2>Résultats :</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Créé</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Adresse</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in results %}
+                    <tr>
+                        <td>{{ client[0] }}</td>
+                        <td>{{ client[1] }}</td>
+                        <td>{{ client[2] }}</td>
+                        <td>{{ client[3] }}</td>
+                        <td>{{ client[4] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
