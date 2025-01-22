@@ -1,7 +1,7 @@
 import sqlite3
 
 # Connexion à la base de données
-connection = sqlite3.connect('database.db')
+connection = sqlite3.connect('database2.db')
 
 # Création des tables à partir du fichier schema.sql
 with open('schema.sql', 'w') as schema_file:
