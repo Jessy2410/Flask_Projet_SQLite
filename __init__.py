@@ -38,7 +38,7 @@ def enregistrer_livre():
 # Route pour afficher les livres
 @app.route('/liste_livres')
 def liste_livres():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM livres')
     livres = cursor.fetchall()
@@ -51,7 +51,7 @@ def emprunter_livre(livre_id):
     utilisateur_id = session.get('utilisateur_id')
 
     if utilisateur_id:
-        conn = sqlite3.connect('database.db')
+        conn = sqlite3.connect('database2.db')
         cursor = conn.cursor()
         # Vérifier si le livre est disponible
         cursor.execute('SELECT disponible FROM livres WHERE id = ?', (livre_id,))
@@ -73,7 +73,7 @@ def emprunter_livre(livre_id):
 # Route pour afficher les emprunts
 @app.route('/emprunts')
 def afficher_emprunts():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
     cursor.execute('''
         SELECT e.id, l.titre, u.nom, e.date_emprunt, e.date_retour, e.statut
@@ -88,7 +88,7 @@ def afficher_emprunts():
 # Route pour retourner un livre
 @app.route('/retourner_livre/<int:emprunt_id>', methods=['POST'])
 def retourner_livre(emprunt_id):
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
     # Mettre à jour le statut de l'emprunt et marquer le livre comme disponible
     cursor.execute('''
