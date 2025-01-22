@@ -64,7 +64,7 @@ def search_by_nom():
                 cursor = conn.cursor()
 
                 # Requête SQL pour rechercher le client par nom
-                cursor.execute("SELECT * FROM clients WHERE nom = ?", (nom,))
+                cursor.execute("SELECT * FROM utilisateurs WHERE nom = ?", (nom,))
                 results = cursor.fetchall()
 
                 if not results:
