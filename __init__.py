@@ -41,7 +41,7 @@ def authentification():
 
 @app.route('/fiche_client/<int:post_id>')
 def Readfiche(post_id):
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM clients WHERE id = ?', (post_id,))
     data = cursor.fetchall()
@@ -60,7 +60,7 @@ def search_by_nom():
         if nom:
             try:
                 # Connexion à la base SQLite
-                conn = sqlite3.connect('database.db')
+                conn = sqlite3.connect('database2.db')
                 cursor = conn.cursor()
 
                 # Requête SQL pour rechercher le client par nom
@@ -81,7 +81,7 @@ def search_by_nom():
 
 @app.route('/consultation/')
 def ReadBDD():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM clients;')
     data = cursor.fetchall()
@@ -98,7 +98,7 @@ def enregistrer_client():
     prenom = request.form['prenom']
 
     # Connexion à la base de données
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
 
     # Exécution de la requête SQL pour insérer un nouveau client
