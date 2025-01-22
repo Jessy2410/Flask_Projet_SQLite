@@ -43,7 +43,7 @@ def authentification():
 def Readfiche(post_id):
     conn = sqlite3.connect('database2.db')
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM clients WHERE id = ?', (post_id,))
+    cursor.execute('SELECT * FROM utilisateurs WHERE id = ?', (post_id,))
     data = cursor.fetchall()
     conn.close()
     # Rendre le template HTML et transmettre les données
