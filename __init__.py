@@ -33,6 +33,19 @@ def enregistrer_livre():
 
     return render_template('formulaire_livre.html')
 
+@app.route('/authentification', methods=['GET', 'POST'])
+def authentification():
+    if request.method == 'POST':
+        # Vérifier les identifiants
+        if request.form['username'] == 'admin' and request.form['password'] == 'password':  # Mot de passe à sécuriser
+            session['authentifie'] = True
+            return redirect(url_for('lecture'))  # Redirige vers une autre page après connexion réussie
+        else:
+            return render_template('authentification.html', error=True)
+
+    return render_template('authentification.html', error=False)
+
+
 # Route pour afficher les livres
 @app.route('/liste_livres')
 def liste_livres():
