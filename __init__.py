@@ -55,7 +55,8 @@ def emprunter_livre(livre_id):
         disponible = cursor.fetchone()
 
         if disponible and disponible[0] == 1:
-            cursor.execute('INSERT INTO emprunts (utilisateur_id, livre_id, statut) VALUES (?, ?, ?)', (utilisateur_id, livre_id, 'En cours'))
+            cursor.execute('INSERT INTO emprunts (utilisateur_id, livre_id, statut) VALUES (?, ?, ?)', 
+                           (utilisateur_id, livre_id, 'En cours'))
             cursor.execute('UPDATE livres SET disponible = 0 WHERE id = ?', (livre_id,))
             conn.commit()
 
@@ -63,6 +64,7 @@ def emprunter_livre(livre_id):
         return redirect(url_for('liste_livres'))
 
     return redirect(url_for('authentification'))
+
 
 # Route pour afficher les emprunts
 @app.route('/emprunts')
