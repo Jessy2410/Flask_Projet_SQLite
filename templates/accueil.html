@@ -21,6 +21,7 @@
         nav {
             background-color: #34495e;
             padding: 10px;
+            text-align: center;
         }
         nav a {
             color: white;
@@ -56,7 +57,12 @@
         <a href="/liste_livres">Liste des Livres</a>
         <a href="/enregistrer_livre">Enregistrer un Livre</a>
         <a href="/emprunts">Liste des Emprunts</a>
-        <a href="/authentification">Connexion</a>
+
+        {% if session["utilisateur"] %}
+            <a href="/logout" style="color: red;">Déconnexion</a>
+        {% else %}
+            <a href="/authentification">Connexion</a>
+        {% endif %}
     </nav>
     <main>
         <h2>Bienvenue dans l'application de gestion de bibliothèque</h2>
@@ -67,6 +73,9 @@
             <li>Gérer les emprunts et retours de livres.</li>
             <li>Gérer les utilisateurs avec des rôles différenciés.</li>
         </ul>
+        {% if session["utilisateur"] %}
+            <p>Bienvenue, <strong>{{ session["utilisateur"] }}</strong> !</p>
+        {% endif %}
         <p>Utilisez la navigation ci-dessus pour accéder aux différentes fonctionnalités.</p>
     </main>
     <footer>
