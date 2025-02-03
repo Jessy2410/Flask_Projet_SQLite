@@ -57,7 +57,7 @@ def dashboard():
 def logout():
     session.pop('utilisateur', None)
     session.pop('utilisateur_id', None)
-    return redirect(url_for('authentification'))
+    return redirect(url_for('accueil'))
 
 # Route pour afficher les livres disponibles
 @app.route('/liste_livres')
