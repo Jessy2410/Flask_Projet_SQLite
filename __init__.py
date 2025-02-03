@@ -39,7 +39,7 @@ def authentification():
         if user:
             session['utilisateur'] = user[1]  # Stocker le nom d'utilisateur en session
             session['utilisateur_id'] = user[0]  # Stocker l'ID utilisateur pour les emprunts
-            return redirect(url_for('accueil.html'))  # Redirection vers la page après connexion
+            return redirect(url_for('accueil'))  # Redirection vers la page après connexion
         else:
             error = "Email ou mot de passe incorrect."
 
