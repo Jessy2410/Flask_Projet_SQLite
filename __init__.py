@@ -144,6 +144,26 @@ def enregistrer_client():
 
     return render_template('formulaire.html')
 
+@app.route('/enregistrer_livre', methods=['GET', 'POST'])
+def enregistrer_livre():
+    if request.method == 'POST':
+        titre = request.form['titre']
+        auteur = request.form['auteur']
+        genre = request.form.get('genre', '')
+
+        # Connexion à la base de données
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO livres (titre, auteur, genre, disponible) VALUES (?, ?, ?, ?)', 
+                       (titre, auteur, genre, 1))  # 1 signifie que le livre est disponible
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for('liste_livres'))  # Rediriger vers la liste des livres
+
+    return render_template('formulaire_livre.html')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
