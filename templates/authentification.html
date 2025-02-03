@@ -66,12 +66,12 @@
 <body>
     <div class="container">
         <h1>Connexion</h1>
-        <form method="POST" action="/authentification">
+        <form method="POST">
             {% if error %}
-                <div class="error">Identifiant ou mot de passe incorrect.</div>
+                <div class="error">{{ error }}</div>
             {% endif %}
-            <label for="username">Nom d'utilisateur :</label>
-            <input type="text" id="username" name="username" placeholder="Entrez votre nom d'utilisateur" required>
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
 
             <label for="password">Mot de passe :</label>
             <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
@@ -81,3 +81,4 @@
     </div>
 </body>
 </html>
+
